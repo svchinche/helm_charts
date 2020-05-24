@@ -10,7 +10,6 @@ env:
   app.profile: dev
 
 service:
-  type:
   port: 8888
 
 ingress:
