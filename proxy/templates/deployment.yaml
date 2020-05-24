@@ -1,57 +1,54 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "proxy.fullname" . }}
-  labels:
-{{ include "proxy.labels" . | indent 4 }}
+   name: proxy-ms
+   namespace: ccoms
+   labels:
+      app: proxy-ms
 spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: {{ include "proxy.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: {{ include "proxy.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-    spec:
-    {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-      serviceAccountName: {{ template "proxy.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-    {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
+   replicas: 2
+   strategy:
+      type: RollingUpdate
+      rollingUpdate:
+         maxSurge: 1
+         maxUnavailable: 50%
+   revisionHistoryLimit: 5
+   selector:
+      matchLabels:
+         app: proxy-ms
+   template:
+      metadata:
+         labels:
+            app: proxy-ms
+      spec:
+         containers:
+         -  name: proxy-ms
+            image: compucomm/gateway-service:1.2
+            imagePullPolicy: Always
+            ports:
+            -  containerPort: 8111
+            env:
+            - name: app.profile
+              value: dev
+            - name: CCOMS_EMP_PORT
+              value: "8080"
+            - name: CCOMS_DEPT_PORT
+              value: "8081"
+            - name: CCOMS_ORG_PORT
+              value: "8082"
+            - name: CCOMS_ZUUL_PORT
+              value: "8111"
+            readinessProbe:
+              httpGet:
+                path: /emp/pretty
+                port: 8111
+              initialDelaySeconds: 120
+              periodSeconds: 10
+              successThreshold: 1
+            livenessProbe:
+              httpGet:
+                path: /emp/pretty
+                port: 8111
+              initialDelaySeconds: 120
+              periodSeconds: 10
+              successThreshold: 1

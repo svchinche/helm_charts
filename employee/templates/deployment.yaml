@@ -1,57 +1,56 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "employee.fullname" . }}
-  labels:
-{{ include "employee.labels" . | indent 4 }}
+   name: emp-ms
+   namespace: ccoms
+   labels:
+      app: emp-ms
 spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: {{ include "employee.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: {{ include "employee.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-    spec:
-    {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-      serviceAccountName: {{ template "employee.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-    {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
+   replicas: 3
+   strategy:
+      type: RollingUpdate
+      rollingUpdate:
+         maxSurge: 1
+         maxUnavailable: 50%
+   revisionHistoryLimit: 5
+   selector:
+      matchLabels:
+         app: emp-ms
+   template:
+      metadata:
+         labels:
+            app: emp-ms
+      spec:
+         containers:
+         -  name: emp-ms
+            image: compucomm/emp-service:1.2
+            imagePullPolicy: Always
+            ports:
+            -  containerPort: 8080
+            env:
+            - name: app.profile
+              value: dev
+            - name: CCOMS_DATABASE_USERNAME
+              value: admin
+            - name: CCOMS_DATABASE_PASSWORD
+              value: admin123
+            - name: CCOMS_DATABASE_SERVICENAME
+              value: admin
+            - name: CCOMS_DATABASE_PORT
+              value: "27017"
+            - name: CCOMS_EMP_PORT
+              value: "8080"
+            readinessProbe:
+               httpGet:
+                  path: /pretty
+                  port: 8080
+               initialDelaySeconds: 120
+               periodSeconds: 10
+               successThreshold: 1
+            livenessProbe:
+               httpGet:
+                  path: /pretty
+                  port: 8080
+               initialDelaySeconds: 120
+               periodSeconds: 10
+               successThreshold: 1
