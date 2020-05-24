@@ -16,7 +16,7 @@ spec:
       spec:
          containers:
          -  name:  {{ include "config.fullname" . }}
-            image: compucomm/gateway-service:1.2
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: Always
             ports:
             -  containerPort: 8111

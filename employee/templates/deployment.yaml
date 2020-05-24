@@ -16,8 +16,8 @@ spec:
       spec:
          containers:
          -  name:  {{ include "config.fullname" . }}
-            image: compucomm/emp-service:1.2
-            imagePullPolicy: Always
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
             ports:
             -  containerPort: 8080
             env:
