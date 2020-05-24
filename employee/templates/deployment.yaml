@@ -19,7 +19,7 @@ spec:
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             ports:
-            -  containerPort: 8080
+            -  containerPort: {{ .Values.service.port }}
             env:
             - name: app.profile
               value: dev
@@ -32,18 +32,18 @@ spec:
             - name: CCOMS_DATABASE_PORT
               value: "27017"
             - name: CCOMS_EMP_PORT
-              value: "8080"
+              value: "{{ .Values.service.port }}"
             readinessProbe:
                httpGet:
                   path: /pretty
-                  port: 8080
+                  port: {{ .Values.service.port }}
                initialDelaySeconds: 120
                periodSeconds: 10
                successThreshold: 1
             livenessProbe:
                httpGet:
                   path: /pretty
-                  port: 8080
+                  port: {{ .Values.service.port }}
                initialDelaySeconds: 120
                periodSeconds: 10
                successThreshold: 1
