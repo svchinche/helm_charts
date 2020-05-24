@@ -1,28 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-   name: proxy-ms
+   name:  {{ include "config.fullname" . }}
    namespace: ccoms
    labels:
-      app: proxy-ms
+      app:  {{ include "config.fullname" . }}
 spec:
-   replicas: 2
-   strategy:
-      type: RollingUpdate
-      rollingUpdate:
-         maxSurge: 1
-         maxUnavailable: 50%
-   revisionHistoryLimit: 5
+   replicas: {{ .Values.replicaCount }}
    selector:
       matchLabels:
-         app: proxy-ms
+         app:  {{ include "config.fullname" . }}
    template:
       metadata:
          labels:
-            app: proxy-ms
+            app:  {{ include "config.fullname" . }}
       spec:
          containers:
-         -  name: proxy-ms
+         -  name:  {{ include "config.fullname" . }}
             image: compucomm/gateway-service:1.2
             imagePullPolicy: Always
             ports:

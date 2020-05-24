@@ -1,27 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cfg-ms
-  namespace: ccoms
+  name:  {{ include "config.fullname" . }}
   labels:
-    app: cfg-ms
+    app:  {{ include "config.fullname" . }}
 spec:
-  replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 50%
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: cfg-ms
+      app:  {{ include "config.fullname" . }}
   template:
     metadata:
       labels:
-        app: cfg-ms
+        app:  {{ include "config.fullname" . }}
     spec:
       containers:
-      - name: cfg-ms
+      - name:  {{ include "config.fullname" . }}
         image: 'compucomm/config-service'
         imagePullPolicy: Always
         ports:
