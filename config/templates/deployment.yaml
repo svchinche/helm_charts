@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "config.fullname" . }}
+  name: {{ template "name" . }}
   labels:
-    app: {{ include "config.fullname" . }}
+    app: {{ template "name" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "config.fullname" . }}
+      app: {{ template "name" . }}
   template:
     metadata:
       labels:
-        app: {{ include "config.fullname" . }}
+        app: {{ template "name" . }}
     spec:
       containers:
-      - name: {{ include "config.fullname" . }}
+      - name: {{ template "name" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "config.fullname" . }}-test-connection"
+  name: "{{ template "name" . }}-test-connection"
   labels:
 {{ include "config.labels" . | indent 4 }}
   annotations:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "config.fullname" . }}:{{ .Values.service.port }}']
+      args:  ['{{ template "name" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
