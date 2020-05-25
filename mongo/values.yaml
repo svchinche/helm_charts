@@ -1,13 +1,15 @@
 replicaCount: 1
 
 image:
-  repository: mongod
-  tag: 1.3
-  pullPolicy: IfNotPresent
+  repository: mongo
+  tag: 3.4
+  pullPolicy: Always
   ports:
     containerPort: 8888
 env:
   app.profile: dev
+
+role: mongo
 
 service:
   type:

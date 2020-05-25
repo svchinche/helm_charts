@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mongodb
+  name: {{ template "name" . }}
   labels:
-    role: mongo
+    role: {{ .Values.role }}
     environment: {{ .Values.profile }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  serviceName: db
+  serviceName: {{ template "name" . }}
   selector:
     matchLabels:
-      role: mongo
+      role: {{ .Values.role }}
       environment: {{ .Values.profile }}
   template:
     metadata:
       labels:
-        role: mongo
+        role: {{ .Values.role }}
         environment: {{ .Values.profile }}
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: mongodb
+      - name: {{ template "name" . }}
         image: mongo:3.4
         command:
         - mongod

@@ -9,6 +9,6 @@ spec:
    -  port: {{ DB.MONGO.PORT }}
       protocol: TCP
    selector:
-      role: mongo
+      role: {{ .Values.role }}
       environment: {{ .Values.profile }}
    clusterIP: None
