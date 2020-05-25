@@ -17,3 +17,8 @@ service:
 
 ingress:
   enabled: false
+
+service_name: 
+database-password:
+database-user: 
+database-name:
