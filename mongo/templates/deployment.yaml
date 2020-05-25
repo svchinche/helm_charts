@@ -35,7 +35,7 @@ spec:
           name: dbvolumes
         imagePullPolicy: Always
         ports:
-        - containerPort: {{ DB.MONGO.PORT }}
+        - containerPort: {{ .Values.service.port }}
         env:
         - name: MONGO_INITDB_DATABASE
           valueFrom:
