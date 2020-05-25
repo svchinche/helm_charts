@@ -7,11 +7,9 @@ image:
   
 externalIPaddress: 
   
-env:
-  app.profile: dev
+profile: dev
 
 service:
-  type:
   port: 8111
 
 ingress:

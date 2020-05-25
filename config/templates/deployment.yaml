@@ -22,4 +22,4 @@ spec:
         - containerPort: {{ .Values.service.port }}
         env:
         - name: app.profile
-          value: dev
+          value: {{ .Values.profile }}

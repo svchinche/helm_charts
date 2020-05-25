@@ -4,11 +4,10 @@ image:
   repository: compucomm/dept-service
   tag: 1.3
   pullPolicy: IfNotPresent
-env:
-  app.profile: dev
+
+profile: dev
 
 service:
-  type:
   port: 8081
 
 ingress:

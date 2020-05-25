@@ -40,17 +40,17 @@ spec:
         - name: MONGO_INITDB_DATABASE
           valueFrom:
             secretKeyRef:
-              name: mongodb
+              name: {{ template "name" . }}
               key: database-name
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
             secretKeyRef:
-              name: mongodb
+              name: {{ template "name" . }}
               key: database-user
         - name: MONGO_INITDB_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mongodb
+              name: {{ template "name" . }}
               key: database-password
       - name: mongo-sidecar
         image: cvallance/mongo-k8s-sidecar

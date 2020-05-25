@@ -4,25 +4,22 @@ image:
   repository: mongo
   tag: 3.4
   pullPolicy: Always
-  ports:
-    containerPort: 8888
-env:
-  app.profile: dev
+
+profile: dev
 
 role: mongo
 
 service:
-  type:
-  port: 8888
+  port: 27027
 
 ingress:
   enabled: false
 
 database:
-  service_name: 
-  password:
-  user: 
-  name:
+  service_name: admin
+  password: admin123
+  user: admin
 
-nfsserverhost:
+## Persisten volume related parameters
+nfsserverhost: 
 

@@ -4,8 +4,8 @@ image:
   repository: compucomm/config-service
   tag: 1.3
   pullPolicy: IfNotPresent
-env:
-  app.profile: dev
+
+profile: dev
 
 service:
   port: 8888
