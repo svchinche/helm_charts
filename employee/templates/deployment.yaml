@@ -34,7 +34,7 @@ spec:
             - name: CCOMS_EMP_PORT
               value: "{{ .Values.service.port }}"
             - name: EMP_HOST
-              value: "{{ template 'name' . }}.{{ .Release.Namespace }}"
+              value: "{{ template "name" . }}.{{ .Release.Namespace }}"
             - name: MONGO_HOST
               value: "mongo.{{ .Release.Namespace }}"
             readinessProbe:
