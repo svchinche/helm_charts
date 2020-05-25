@@ -35,6 +35,8 @@ spec:
               value: "8080"
             - name: CCOMS_DEPT_PORT
               value: "{{ .Values.service.port }}"
+            - name: DEPT_HOST
+              value: "http://{{ template 'name' . }}.{{ .Release.Namespace }}"
             readinessProbe:
                httpGet:
                   path: /pretty

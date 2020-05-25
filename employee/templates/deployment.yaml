@@ -33,6 +33,8 @@ spec:
               value: "27017"
             - name: CCOMS_EMP_PORT
               value: "{{ .Values.service.port }}"
+            - name: EMP_HOST
+              value: "http://{{ template 'name' . }}.{{ .Release.Namespace }}"
             readinessProbe:
                httpGet:
                   path: /pretty
