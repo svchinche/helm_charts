@@ -10,7 +10,7 @@ spec:
     - ReadWriteOnce
     - ReadWriteMany
   nfs:
-    server: {{ ansible_hostname }}
+    server: {{ Values.nfsserverhost }}
     path: /u02/pvs/pv0
 ---
 apiVersion: v1
