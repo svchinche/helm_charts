@@ -31,6 +31,12 @@ spec:
               value: "8082"
             - name: CCOMS_ZUUL_PORT
               value: "{{ .Values.service.port }}"
+            - name: EMP_HOST
+              value: "employee.{{ .Release.Namespace }}"
+            - name: DEPT_HOST
+              value: "department.{{ .Release.Namespace }}"
+            - name: ORG_HOST
+              value: "organization.{{ .Release.Namespace }}"
             readinessProbe:
               httpGet:
                 path: /emp/pretty

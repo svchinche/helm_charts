@@ -38,7 +38,9 @@ spec:
             - name: CCOMS_ORG_PORT
               value: "{{ .Values.service.port }}"
             - name: ORG_HOST
-              value: "http://{{ template 'name' . }}.{{ .Release.Namespace }}"
+              value: "{{ template 'name' . }}.{{ .Release.Namespace }}"
+            - name: MONGO_HOST
+              value: "mongo.{{ .Release.Namespace }}"
             readinessProbe:
                httpGet:
                   path: /pretty
