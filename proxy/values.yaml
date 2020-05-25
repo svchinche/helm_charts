@@ -5,6 +5,8 @@ image:
   tag: 1.3
   pullPolicy: IfNotPresent
   
+externalIPaddress: 
+  
 env:
   app.profile: dev
 
