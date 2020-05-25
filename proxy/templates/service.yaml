@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "proxy.fullname" . }}
+  name: {{ template "name" . }}
   labels:
-{{ include "proxy.labels" . | indent 4 }}
+    app: {{ template "name" . }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,5 +12,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "proxy.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app: {{ template "name" . }}
+
