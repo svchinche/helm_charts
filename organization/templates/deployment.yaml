@@ -21,7 +21,7 @@ spec:
             ports:
             -  containerPort: {{ .Values.env.normal.CCOMS_ORG_PORT }}
             env:
-{{- include "helpers.list-env-variables" . | indent 15 }}
+{{- include "helpers.list-env-variables" . | indent 12 }}
             - name: ORG_HOST
               value: "{{ template "name" . }}.{{ .Release.Namespace }}"
             - name: MONGO_HOST

@@ -21,7 +21,7 @@ spec:
             ports:
             -  containerPort: {{ .Values.env.normal.CCOMS_DEPT_PORT }}
             env:
-{{- include "helpers.list-env-variables" . | indent 15 }}           
+{{- include "helpers.list-env-variables" . | indent 12 }}           
             - name: MONGO_HOST
               value: "mongo.{{ .Release.Namespace }}"
             readinessProbe:
