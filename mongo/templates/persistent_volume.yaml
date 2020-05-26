@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-nfs-pv0
+  namespace: {{ .Release.Namespace }}
 spec:
   storageClassName: manual
   capacity:
@@ -17,6 +18,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-nfs-pv1
+  namespace: {{ .Release.Namespace }}
 spec:
   storageClassName: manual
   capacity:
@@ -32,6 +34,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-nfs-pv2
+  namespace: {{ .Release.Namespace }}
 spec:
   storageClassName: manual
   capacity:
@@ -47,6 +50,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-nfs-pv3
+  namespace: {{ .Release.Namespace }}
 spec:
   storageClassName: manual
   capacity:
@@ -62,6 +66,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-nfs-pv4
+  namespace: {{ .Release.Namespace }}
 spec:
   storageClassName: manual
   capacity:
