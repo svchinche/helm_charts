@@ -4,19 +4,19 @@ metadata:
   name: {{ template "name" . }}
   labels:
     role: {{ .Values.role }}
-    environment: {{ .Values.profile }}
+    environment: {{ .Values.env.normal.app.profile }}
 spec:
   replicas: {{ .Values.replicaCount }}
   serviceName: {{ template "name" . }}
   selector:
     matchLabels:
       role: {{ .Values.role }}
-      environment: {{ .Values.profile }}
+      environment: {{ .Values.env.normal.app.profile }}
   template:
     metadata:
       labels:
         role: {{ .Values.role }}
-        environment: {{ .Values.profile }}
+        environment: {{ .Values.env.normal.app.profile }}
     spec:
       terminationGracePeriodSeconds: 10
       containers:
@@ -42,7 +42,7 @@ spec:
         image: cvallance/mongo-k8s-sidecar
         env:
         - name: MONGO_SIDECAR_POD_LABELS
-          value: "role=mongo,environment={{ .Values.profile }}"
+          value: "role=mongo,environment={{ .Values.env.normal.app.profile }}"
   volumeClaimTemplates:
   - metadata:
       name: dbvolumes

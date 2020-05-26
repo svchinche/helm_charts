@@ -16,8 +16,12 @@ env:
     app:
       profile: dev
 
-## Role required for mongo db
-role: mongo
-
 ## External ip address for Proxy Microservice 
 externalIPaddress: 
+
+#####  Mongo Values ##########
+role: mongo
+## Persistent volume  ##
+volume: 
+  enabled: true
+nfsserverhost: 

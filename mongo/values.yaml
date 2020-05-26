@@ -5,14 +5,7 @@ image:
   tag: 3.4
   pullPolicy: Always
 
-service:
-  port: 27027
-
 ingress:
   enabled: false
 
-  
-
-## Persisten volume related parameters
-nfsserverhost: 
 
