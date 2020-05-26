@@ -21,31 +21,7 @@ spec:
             ports:
             -  containerPort: {{ .Values.service.port }}
             env:
-            -  name: app.profile
-               value: {{ .Values.profile }}
-            - name: CCOMS_DATABASE_USERNAME
-               valueFrom:
-                  secretKeyRef:
-                  name: {{ template "name" . }}
-                  key: database-user
-            - name: CCOMS_DATABASE_PASSWORD
-               valueFrom:
-                  secretKeyRef:
-                  name: {{ template "name" . }}
-                  key: database-password
-            - name: CCOMS_DATABASE_SERVICENAME
-               valueFrom:
-                  secretKeyRef:
-                  name: {{ template "name" . }}
-                  key: database-servicename
-            - name: CCOMS_DATABASE_PORT
-              value: "27017"
-            - name: CCOMS_EMP_PORT
-              value: "8080"
-            - name: CCOMS_DEPT_PORT
-              value: "{{ .Values.service.port }}"
-            - name: DEPT_HOST
-              value: "{{ template "name" . }}.{{ .Release.Namespace }}"
+            {{- include "helpers.list-env-variables" . | indent 3 }}
             - name: MONGO_HOST
               value: "mongo.{{ .Release.Namespace }}"
             readinessProbe:

@@ -37,21 +37,7 @@ spec:
         ports:
         - containerPort: {{ .Values.service.port }}
         env:
-        - name: MONGO_INITDB_DATABASE
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "name" . }}
-              key: database-name
-        - name: MONGO_INITDB_ROOT_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "name" . }}
-              key: database-user
-        - name: MONGO_INITDB_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "name" . }}
-              key: database-password
+        {{- include "helpers.list-env-variables" . | indent 3 }}
       - name: mongo-sidecar
         image: cvallance/mongo-k8s-sidecar
         env:

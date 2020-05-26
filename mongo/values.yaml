@@ -5,20 +5,13 @@ image:
   tag: 3.4
   pullPolicy: Always
 
-profile: dev
-
-role: mongo
-
 service:
   port: 27027
 
 ingress:
   enabled: false
 
-database:
-  service_name: admin
-  password: admin123
-  user: admin
+  
 
 ## Persisten volume related parameters
 nfsserverhost: 

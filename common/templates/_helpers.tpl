@@ -2,7 +2,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "config.name" -}}
+{{- define "name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
@@ -54,3 +54,18 @@ Create the name of the service account to use
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
 {{- end -}}
+
+
+{{- define "helpers.list-env-variables"}}
+{{- range $key, $val := .Values.env.secret }}
+- name: {{ $key }}
+  valueFrom:
+    secretKeyRef:
+      name: ccoms-secrets
+      key: {{ $key }}
+{{- end}}
+{{- range $key, $val := .Values.env.normal }}
+- name: {{ $key }}
+  value: {{ $val | quote }}
+{{- end}}
+{{- end }}

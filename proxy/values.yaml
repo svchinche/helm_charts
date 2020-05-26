@@ -6,8 +6,6 @@ image:
   pullPolicy: IfNotPresent
   
 externalIPaddress: 
-  
-profile: dev
 
 service:
   port: 8111
