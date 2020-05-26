@@ -5,7 +5,6 @@ metadata:
   labels:
     app: {{ template "name" . }}
 spec:
-  type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.env.normal.CCOMS_PROXY_PORT }}
       targetPort: http
@@ -13,4 +12,5 @@ spec:
       name: http
   selector:
     app: {{ template "name" . }}
-
+  externalIPs:
+  -  {{ .Values.externalIPaddress }} 
