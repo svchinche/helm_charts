@@ -22,6 +22,10 @@ spec:
             -  containerPort: {{ .Values.env.normal.CCOMS_ORG_PORT }}
             env:
 {{- include "helpers.list-env-variables" . | indent 12 }}
+            - name: EMP_HOST
+              value: "employee.{{ .Release.Namespace }}"
+            - name: DEPT_HOST
+              value: "department.{{ .Release.Namespace }}"
             - name: ORG_HOST
               value: "{{ template "name" . }}.{{ .Release.Namespace }}"
             - name: MONGO_HOST

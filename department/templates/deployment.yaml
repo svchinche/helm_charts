@@ -24,6 +24,8 @@ spec:
 {{- include "helpers.list-env-variables" . | indent 12 }}           
             - name: MONGO_HOST
               value: "mongo.{{ .Release.Namespace }}"
+            - name: EMP_HOST
+              value: "employee.{{ .Release.Namespace }}"
             readinessProbe:
                httpGet:
                   path: /pretty
