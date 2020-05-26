@@ -19,9 +19,9 @@ spec:
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: Always
             ports:
-            -  containerPort: {{ .Values.service.port }}
+            -  containerPort: {{ .Values.env.normal.CCOMS_PROXY_PORT }}
             env:
-            {{- include "helpers.list-env-variables" . | indent 3 }}
+{{- include "helpers.list-env-variables" . | indent 12 }}
             - name: EMP_HOST
               value: "employee.{{ .Release.Namespace }}"
             - name: DEPT_HOST
@@ -31,14 +31,14 @@ spec:
             readinessProbe:
               httpGet:
                 path: /emp/pretty
-                port: {{ .Values.service.port }}
+                port: {{ .Values.env.normal.CCOMS_PROXY_PORT }}
               initialDelaySeconds: 120
               periodSeconds: 10
               successThreshold: 1
             livenessProbe:
               httpGet:
                 path: /emp/pretty
-                port: {{ .Values.service.port }}
+                port: {{ .Values.env.normal.CCOMS_PROXY_PORT }}
               initialDelaySeconds: 120
               periodSeconds: 10
               successThreshold: 1

@@ -19,22 +19,22 @@ spec:
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             ports:
-            -  containerPort: {{ .Values.service.port }}
+            -  containerPort: {{ .Values.env.normal.CCOMS_DEPT_PORT }}
             env:
-            {{- include "helpers.list-env-variables" . | indent 3 }}
+{{- include "helpers.list-env-variables" . | indent 15 }}           
             - name: MONGO_HOST
               value: "mongo.{{ .Release.Namespace }}"
             readinessProbe:
                httpGet:
                   path: /pretty
-                  port: {{ .Values.service.port }}
+                  port: {{ .Values.env.normal.CCOMS_DEPT_PORT }}
                initialDelaySeconds: 120
                periodSeconds: 10
                successThreshold: 1
             livenessProbe:
                httpGet:
                   path: /pretty
-                  port: {{ .Values.service.port }}
+                  port: {{ .Values.env.normal.CCOMS_DEPT_PORT }}
                initialDelaySeconds: 120
                periodSeconds: 10
                successThreshold: 1

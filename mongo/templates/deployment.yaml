@@ -35,9 +35,9 @@ spec:
           name: dbvolumes
         imagePullPolicy: Always
         ports:
-        - containerPort: {{ .Values.service.port }}
+        - containerPort: {{ .Values.env.normal.CCOMS_DATABASE_PORT }}
         env:
-        {{- include "helpers.list-env-variables" . | indent 3 }}
+{{- include "helpers.list-env-variables" . | indent 10 }}
       - name: mongo-sidecar
         image: cvallance/mongo-k8s-sidecar
         env:

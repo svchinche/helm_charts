@@ -6,7 +6,7 @@ metadata:
       app: mongodb
 spec:
    ports:
-   -  port: {{ .Values.service.port }}
+   -  port: {{ .Values.env.normal.CCOMS_DATABASE_PORT }}
       protocol: TCP
    selector:
       role: {{ .Values.role }}
