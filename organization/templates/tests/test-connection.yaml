@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "organization.fullname" . }}:{{ .Values.service.port }}']
+      args:  ['{{ include "organization.fullname" . }}:{{ .Values.env.normal.CCOMS_ORG_PORT }}']
   restartPolicy: Never

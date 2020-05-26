@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "mongo.fullname" . }}:{{ .Values.service.port }}']
+      args:  ['{{ include "mongo.fullname" . }}:{{ .Values.env.normal.CCOMS_DATABASE_PORT }}']
   restartPolicy: Never
