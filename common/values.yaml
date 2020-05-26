@@ -13,8 +13,9 @@ env:
     CCOMS_DEPT_PORT: 8081
     CCOMS_ORG_PORT: 8082
     CCOMS_PROXY_PORT: 8111
-    app:
-      profile: dev
+    app.profile: dev
+
+profile: dev
 
 ## External ip address for Proxy Microservice 
 externalIPaddress: 

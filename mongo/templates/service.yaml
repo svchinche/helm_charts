@@ -10,5 +10,5 @@ spec:
       protocol: TCP
    selector:
       role: {{ .Values.role }}
-      environment: {{ .Values.env.normal.app.profile }}
+      environment: {{ .Values.profile }}
    clusterIP: None

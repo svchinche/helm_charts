@@ -22,4 +22,4 @@ spec:
         - containerPort: {{ .Values.env.normal.CCOMS_CONFIG_PORT }}
         env:
         - name: app.profile
-          value: {{ .Values.env.normal.app.profile }}
+          value: {{ .Values.profile }}
