@@ -7,10 +7,6 @@ metadata:
 spec:
   ports:
     - port: {{ .Values.env.normal.CCOMS_ORG_PORT }}
-      targetPort: http
       protocol: TCP
-      name: http
   selector:
     app: {{ template "name" . }}
-  externalIPs:
-   -  {{ .Values.externalIPaddress }} 
