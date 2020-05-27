@@ -2,7 +2,7 @@ replicaCount: 3
 
 image:
   repository: compucomm/dept-service
-  tag: 1.3
+  tag: latest
   pullPolicy: IfNotPresent
   
 ingress:
