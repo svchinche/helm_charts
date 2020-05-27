@@ -28,6 +28,8 @@ spec:
               value: "department.{{ .Release.Namespace }}"
             - name: ORG_HOST
               value: "organization.{{ .Release.Namespace }}"
+            - name: CONFIG_HOST
+              value: "config.{{ .Release.Namespace }}"
             readinessProbe:
               httpGet:
                 path: /emp/pretty
