@@ -1,7 +1,6 @@
 #!/bin/bash
 
 application_name=$1
-
 [[ $application_name == '' ]] && application_name=ccoms;
 
 ## Create deployment
