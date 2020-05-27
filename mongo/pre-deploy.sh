@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+
+
 ###
 SHARED_DIR="/u02/pvs"
 DIRS=(pv0,pv1,pv2,pv3,pv4)
@@ -18,10 +22,10 @@ grep 'pvs' $NFS_CONF_DIR >/dev/null || ( sed -i '$ a\/u02/pvs *(rw,sync,no_root_
 
 host_name=$(hostname -f)
 externalIPaddress=$(hostname -i | awk '{print $2}')
-file_name="../common/values.yaml"
+file_name="$SCRIPTPATH/../common/values.yaml"
 sed -i "s/^nfsserverhost:.*/nfsserverhost: $host_name/g" $file_name
 sed -i "s/^externalIPaddress:.*/externalIPaddress: ${externalIPaddress}/g" $file_name
 
 ### Get data from yaml and update it create_user.json
 
-sh get_data_from_json.sh
+sh $SCRIPTPATH/get_data_from_json.sh
