@@ -20,3 +20,7 @@ externalIPaddress=$(hostname -i | awk '{print $2}')
 file_name="../common/values.yaml"
 sed -i "s/^nfsserverhost:.*/nfsserverhost: $host_name/g" $file_name
 sed -i "s/^externalIPaddress:.*/externalIPaddress: ${externalIPaddress}/g" $file_name
+
+### Get data from yaml and update it create_user.json
+
+sh get_data_from_json.sh
