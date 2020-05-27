@@ -12,4 +12,7 @@ sh $SCRIPTPATH/proxy/undeploy.sh $application_name
 sh $SCRIPTPATH/department/undeploy.sh $application_name
 sh $SCRIPTPATH/organization/undeploy.sh $application_name
 sh $SCRIPTPATH/employee/undeploy.sh $application_name
+sh $SCRIPTPATH/config/undeploy.sh $application_name
 sh $SCRIPTPATH/mongo/undeploy.sh $application_name
+
+kubectl delete namespace $application_name
