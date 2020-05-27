@@ -7,9 +7,9 @@
 eval $(parse_yaml ../common/values.yaml "config_")
 
 # access yaml content
-username=$config_env_secret_CCOMS_DATABASE_USERNAME
-password=$config_env_secret_CCOMS_DATABASE_PASSWORD
-servicename=$config_env_secret_CCOMS_DATABASE_SERVICENAME
+username=$config_env_secret_MONGO_INITDB_ROOT_USERNAME
+password=$config_env_secret_MONGO_INITDB_ROOT_PASSWORD
+servicename=$config_env_secret_MONGO_INITDB_DATABASE
 
 cat > create_user.json <<EOL
 use $servicename;
