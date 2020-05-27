@@ -8,8 +8,14 @@ helm ls | grep $1 | awk '{print $1}' | xargs helm del --purge
 SHARED_DIR="/u02/pvs"
 
 kubectl patch pv pv-nfs-pv0 -p '{"metadata":{"finalizers":null}}'
+kubectl patch pv pv-nfs-pv1 -p '{"metadata":{"finalizers":null}}'
+kubectl patch pv pv-nfs-pv2 -p '{"metadata":{"finalizers":null}}'
+kubectl patch pv pv-nfs-pv3 -p '{"metadata":{"finalizers":null}}'
+kubectl patch pv pv-nfs-pv4 -p '{"metadata":{"finalizers":null}}'
+
 kubectl delete pv pv-nfs-pv0 pv-nfs-pv1 pv-nfs-pv2 pv-nfs-pv3 pv-nfs-pv4 --force --grace-period=0 
 rm -rf /u02/pvs/*
+
 kubectl delete secrets mongo -n $application_name
 kubectl delete clusterrolebinding mongo-view
 
