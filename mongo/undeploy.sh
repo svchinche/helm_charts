@@ -3,7 +3,7 @@
 
 application_name=$1
 
-helm del --purge $application_name
+helm ls | grep $1 | awk '{print $1}' | xargs helm del --purge
 SHARED_DIR="/u02/pvs"
 
 kubectl patch pv pv-nfs-pv0 -p '{"metadata":{"finalizers":null}}'
