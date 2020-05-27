@@ -16,7 +16,7 @@ kubectl patch pv pv-nfs-pv4 -p '{"metadata":{"finalizers":null}}'
 kubectl delete pv pv-nfs-pv0 pv-nfs-pv1 pv-nfs-pv2 pv-nfs-pv3 pv-nfs-pv4 --force --grace-period=0 
 rm -rf /u02/pvs/*
 
-kubectl delete secrets mongo -n $application_name
+kubectl delete secrets ccoms-secrets -n $application_name
 kubectl delete clusterrolebinding mongo-view
 
 
