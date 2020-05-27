@@ -26,6 +26,8 @@ spec:
               value: "{{ template "name" . }}.{{ .Release.Namespace }}"
             - name: MONGO_HOST
               value: "mongo.{{ .Release.Namespace }}"
+            - name: CONFIG_HOST
+              value: "config.{{ .Release.Namespace }}"
             readinessProbe:
                httpGet:
                   path: /pretty

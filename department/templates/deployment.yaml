@@ -26,6 +26,8 @@ spec:
               value: "mongo.{{ .Release.Namespace }}"
             - name: EMP_HOST
               value: "employee.{{ .Release.Namespace }}"
+            - name: CONFIG_HOST
+              value: "config.{{ .Release.Namespace }}"
             readinessProbe:
                httpGet:
                   path: /pretty
