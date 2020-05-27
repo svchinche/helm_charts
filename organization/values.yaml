@@ -3,7 +3,7 @@ replicaCount: 3
 image:
   repository: compucomm/org-service
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   
 ingress:
   enabled: false
