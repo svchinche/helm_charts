@@ -18,5 +18,5 @@ grep 'pvs' $NFS_CONF_DIR >/dev/null || ( sed -i '$ a\/u02/pvs *(rw,sync,no_root_
 host_name=$(hostname -f)
 externalIPaddress=$(hostname -i | awk '{print $2}')
 file_name="../common/values.yaml"
-sed -i 's/^nfsserverhost: */nfsserverhost: $hostname/g' $file_name
-sed -i 's/^externalIPaddress:*/externalIPaddress: $externalIPaddress/g' $file_name
+sed -i "s/^nfsserverhost:.*/nfsserverhost: $host_name/g" $file_name
+sed -i "s/^externalIPaddress:.*/externalIPaddress: ${externalIPaddress}/g" $file_name
