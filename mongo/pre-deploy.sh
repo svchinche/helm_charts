@@ -13,4 +13,10 @@ NFS_CONF_DIR='/etc/exports'
 ### Add entry in etc export file and restart if entry added
 grep 'pvs' $NFS_CONF_DIR >/dev/null || ( sed -i '$ a\/u02/pvs *(rw,sync,no_root_squash,nohide)' $NFS_CONF_DIR && ( systemctl restart nfs && exportfs ) )
 
-#replace hostip in k8s manifest file
+
+#replace hostip and exteripaddressin in k8s manifest file
+host_name=$(hostname -f)
+externalIPaddress=$(hostname -i | awk '{print $2}')
+
+sed -i 's/^nfsserverhost: */nfsserverhost: $hostname/g'
+sed -i 's/^externalIPaddress:*/externalIPaddress: $externalIPaddress/g'

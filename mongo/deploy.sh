@@ -1,6 +1,7 @@
 #!/bin/bash
 
 application_name=$1
+
 ## Create deployment
 helm install --debug --namespace=$application_name  --name $application_name -f ../common/values.yaml  ../mongo
 
