@@ -15,8 +15,8 @@ result=`kubectl get pod -n $application_name | grep mongo | grep -i running`
 until [[ $? -eq 0 ]] ;
 do
   echo "Retrying";
-  result=`kubectl get pod -n $application_name | grep mongo | grep -i running`
   sleep 10;
+  result=`kubectl get pod -n $application_name | grep mongo | grep -i running`
 done
 
 kubectl exec -i -n $application_name  mongo-0 -- mongo < $SCRIPTPATH/create_user.json
