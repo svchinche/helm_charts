@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-nfs-pv0
-  finalizers: null
+  finalizers: []
 spec:
   storageClassName: manual
   capacity:
@@ -18,7 +18,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-nfs-pv1
-  finalizers: null
+  finalizers: []
 spec:
   storageClassName: manual
   capacity:
@@ -34,7 +34,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-nfs-pv2
-  finalizers: null
+  finalizers: []
 spec:
   storageClassName: manual
   capacity:
@@ -50,7 +50,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-nfs-pv3
-  finalizers: null
+  finalizers: []
 spec:
   storageClassName: manual
   capacity:
@@ -66,7 +66,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-nfs-pv4
-  finalizers: null
+  finalizers: []
 spec:
   storageClassName: manual
   capacity:
