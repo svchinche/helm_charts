@@ -30,6 +30,8 @@ spec:
               value: "organization.{{ .Release.Namespace }}"
             - name: CONFIG_HOST
               value: "config.{{ .Release.Namespace }}"
+            - name: CCOMS_ZUUL_PORT
+              value: "{{ .Values.env.normal.CCOMS_PROXY_PORT }}"
             readinessProbe:
               httpGet:
                 path: /emp/pretty
