@@ -1,7 +1,7 @@
 replicaCount: 3
 
 image:
-  repository: compucomm/proxy-service
+  repository: compucomm/gateway-service
   tag: latest
   pullPolicy: Always
   
