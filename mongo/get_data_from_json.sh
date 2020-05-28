@@ -4,7 +4,7 @@ SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 
 # include parse_yaml function
-. $SCRIPTPATH/../common/yaml_parser.sh
+. $SCRIPTPATH/../common/utilities.sh
 
 # read yaml file
 eval $(parse_yaml $SCRIPTPATH/../common/values.yaml "config_")
