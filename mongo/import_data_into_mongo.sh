@@ -13,7 +13,7 @@ ORG_JSONFILE="$JSON_FILES_DIR/organization.json"
 resources=(emp org dept)
 
 
-for resource in $resources
+for resource in ${resources[@]}
 do
     while [[ $(curl -I -s -L http://$HOST_NAME:$PROXY_PORT/$resource/pretty | awk /HTTP/'{print $2}') != 200 ]]
     do 
