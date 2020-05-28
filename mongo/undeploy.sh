@@ -21,6 +21,7 @@ done
 
 
 ## Cleanup mongo data on nfs persistent volume
+rm -rf $SHARED_DIR
 [[ ! -d $SHARED_DIR ]] && rm -rf $SHARED_DIR
 [[ ! -d $SHARED_DIR ]] && mkdir -p $SHARED_DIR
 [[ ! -d $SHARED_DIR/pv0 ]] && ( mkdir -p $SHARED_DIR/{pv0,pv1,pv2,pv3,pv4} && chmod -R 777 $SHARED_DIR/ )
