@@ -1,18 +1,35 @@
 #!/bin/bash
 
-### Undeploying product
-
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 
-application_name=$1
-[[ $application_name == '' ]] && application_name=ccoms;
+if [ $# -lt 1 ]
+then
+  echo "Usage: $0 -n"
+  echo "-n <namespace name>"
+  #echo "Setting defualt namespace to ccoms"
+  namespace=ccoms
+fi
 
-sh $SCRIPTPATH/proxy/undeploy.sh $application_name
-sh $SCRIPTPATH/department/undeploy.sh $application_name
-sh $SCRIPTPATH/organization/undeploy.sh $application_name
-sh $SCRIPTPATH/employee/undeploy.sh $application_name
-sh $SCRIPTPATH/config/undeploy.sh $application_name
-sh $SCRIPTPATH/mongo/undeploy.sh $application_name
+# Need to have a colon (:) after each option that has | an argument.
+while getopts n: opt
+do
+  case $opt in
+    n) namespace=$OPTARG;;
+    *) echo "Option not recognized"
+       namespace=ccoms;;
+  esac
+done
+#echo "namespace name is :: $namespace"
 
-kubectl delete namespace $application_name
+
+### Undeploying product
+
+sh $SCRIPTPATH/proxy/undeploy.sh $namespace
+sh $SCRIPTPATH/department/undeploy.sh $namespace
+sh $SCRIPTPATH/organization/undeploy.sh $namespace
+sh $SCRIPTPATH/employee/undeploy.sh $namespace
+sh $SCRIPTPATH/config/undeploy.sh $namespace
+sh $SCRIPTPATH/mongo/undeploy.sh $namespace
+
+kubectl delete namespace $namespace

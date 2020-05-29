@@ -1,11 +1,29 @@
 #!/bin/bash
 
 
-application_name=$1
+if [ $# -lt 1 ]
+then
+  echo "Usage: $0 -n"
+  echo "-n <namespace name>"
+  #echo "Setting defualt namespace to ccoms"
+  namespace=ccoms
+fi
+
+# Need to have a colon (:) after each option that has | an argument.
+while getopts n: opt
+do
+  case $opt in
+    n) namespace=$OPTARG;;
+    *) echo "Option not recognized"
+       namespace=ccoms;;
+  esac
+done
+#echo "namespace name is :: $namespace"
+
+
 SHARED_DIR="/u02/pvs"
 pvs_var=(pv-nfs-pv0 pv-nfs-pv1 pv-nfs-pv2 pv-nfs-pv3 pv-nfs-pv4)
 
-[[ $application_name == '' ]] && application_name=ccoms;
 
 ## deleting all resources
 helm ls  | grep mongo | awk '{print $1}' | xargs helm del --purge
