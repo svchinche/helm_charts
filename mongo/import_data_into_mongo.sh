@@ -18,7 +18,7 @@ do
     while [[ $(curl -I -s -L http://$HOST_NAME:$PROXY_PORT/$resource/pretty | awk /HTTP/'{print $2}') != 200 ]]
     do 
        echo "Waiting for $resource service to get running"
-       sleep 5;
+       sleep 30;
     done
 done
 
