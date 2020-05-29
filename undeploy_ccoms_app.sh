@@ -25,11 +25,11 @@ done
 
 ### Undeploying product
 
-sh $SCRIPTPATH/proxy/undeploy.sh $namespace
-sh $SCRIPTPATH/department/undeploy.sh $namespace
-sh $SCRIPTPATH/organization/undeploy.sh $namespace
-sh $SCRIPTPATH/employee/undeploy.sh $namespace
-sh $SCRIPTPATH/config/undeploy.sh $namespace
-sh $SCRIPTPATH/mongo/undeploy.sh $namespace
+sh $SCRIPTPATH/proxy/undeploy.sh -n $namespace
+sh $SCRIPTPATH/department/undeploy.sh -n $namespace
+sh $SCRIPTPATH/organization/undeploy.sh -n $namespace
+sh $SCRIPTPATH/employee/undeploy.sh -n $namespace
+sh $SCRIPTPATH/config/undeploy.sh -n $namespace
+sh $SCRIPTPATH/mongo/undeploy.sh -n $namespace
 
 kubectl delete namespace $namespace

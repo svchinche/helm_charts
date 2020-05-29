@@ -25,15 +25,15 @@ done
 #echo "namespace name is :: $namespace"
 
 ## Prereq
-sh $SCRIPTPATH/mongo/pre-deploy.sh $namespace
+sh $SCRIPTPATH/mongo/pre-deploy.sh -n $namespace
 
 ## Deployment Scripts
-sh $SCRIPTPATH/mongo/deploy.sh $namespace
-sh $SCRIPTPATH/config/deploy.sh $namespace
-sh $SCRIPTPATH/employee/deploy.sh $namespace
-sh $SCRIPTPATH/department/deploy.sh $namespace
-sh $SCRIPTPATH/organization/deploy.sh $namespace
-sh $SCRIPTPATH/proxy/deploy.sh $namespace
+sh $SCRIPTPATH/mongo/deploy.sh -n $namespace
+sh $SCRIPTPATH/config/deploy.sh -n $namespace
+sh $SCRIPTPATH/employee/deploy.sh -n $namespace
+sh $SCRIPTPATH/department/deploy.sh -n $namespace
+sh $SCRIPTPATH/organization/deploy.sh -n $namespace
+sh $SCRIPTPATH/proxy/deploy.sh -n $namespace
 
 ## Post Deployment script
 sh $SCRIPTPATH/mongo/import_data_into_mongo.sh
