@@ -16,7 +16,7 @@ spec:
       spec:
          containers:
          -  name: {{ template "name" . }}
-            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion Values.image.tag}}"
             imagePullPolicy: Always
             ports:
             -  containerPort: {{ .Values.env.normal.CCOMS_PROXY_PORT }}
