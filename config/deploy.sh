@@ -23,5 +23,5 @@ done
 #echo "namespace name is :: $namespace"
 
 ## Create deployment
-helm install --debug --namespace=$namespace -f $SCRIPTPATH/../common/values.yaml  $SCRIPTPATH/../config
+helm install --debug config --namespace=$namespace -f $SCRIPTPATH/../common/values.yaml  $SCRIPTPATH/../config
 

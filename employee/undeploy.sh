@@ -20,4 +20,4 @@ do
 done
 #echo "namespace name is :: $namespace"
 
-helm ls  | grep employee | awk '{print $1}' | xargs helm del --purge
+helm del --purge employee

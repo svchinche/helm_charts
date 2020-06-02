@@ -26,7 +26,7 @@ pvs_var=(pv-nfs-pv0 pv-nfs-pv1 pv-nfs-pv2 pv-nfs-pv3 pv-nfs-pv4)
 
 
 ## deleting all resources
-helm ls  | grep mongo | awk '{print $1}' | xargs helm del --purge
+helm del --purge mongo
 
 # finalizer value is set to 'protect' which will block the deletion.
 # K8s keep this as protected since volume data may be required in rollback case.

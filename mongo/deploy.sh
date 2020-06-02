@@ -26,7 +26,7 @@ done
 . $SCRIPTPATH/../common/utilities.sh
 
 ## Create deployment
-helm install --debug --namespace=$namespace -f $SCRIPTPATH/../common/values.yaml  $SCRIPTPATH/../mongo
+helm install --debug mongo --namespace=$namespace -f $SCRIPTPATH/../common/values.yaml  $SCRIPTPATH/../mongo
 
 
 ## Create deployment

@@ -23,4 +23,4 @@ done
 #echo "namespace name is :: $namespace"
 
 ## Create deployment
-helm install --debug --namespace=$namespace -f $SCRIPTPATH/../common/values.yaml  $SCRIPTPATH/../proxy
+helm install --debug proxy --namespace=$namespace -f $SCRIPTPATH/../common/values.yaml  $SCRIPTPATH/../proxy
