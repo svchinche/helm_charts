@@ -33,7 +33,8 @@ helm del mongo
 
 for pv in ${pvs_var[@]}
 do
-   kubectl patch pv $pv -p '{"metadata":{"finalizers": []}}' --type=merge
+  kubectl patch pv $pv -p '{"metadata":{"finalizers": []}}' --type=merge
+  kubectl delete pv $pv
 done
 
 
