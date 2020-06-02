@@ -19,7 +19,7 @@ if [ -s $NFS_CONF_DIR  ]
 then
   grep 'pvs' $NFS_CONF_DIR >/dev/null || ( sed -i '$ a\/u02/pvs *(rw,sync,no_root_squash,nohide)' $NFS_CONF_DIR && ( systemctl restart nfs && exportfs ) )
 else
-  echo "/u02/pvs *(rw,sync,no_root_squash,nohide)" >> $NFS_CONF_DIR
+  echo "/u02/pvs *(rw,sync,no_root_squash,nohide)" >> $NFS_CONF_DIR && ( systemctl restart nfs && exportfs )
 fi
 
 ###replace hostip and exteripaddressin in k8s manifest file
