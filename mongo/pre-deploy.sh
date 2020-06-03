@@ -25,7 +25,7 @@ fi
 ###replace hostip and exteripaddressin in k8s manifest file
 
 host_name=$(hostname -f)
-externalIPaddress=$(hostname -i | awk '{print $2}')
+externalIPaddress=$(hostname -I | awk '{print $1}')
 file_name="$SCRIPTPATH/../common/values.yaml"
 sed -i "s/^nfsserverhost:.*/nfsserverhost: $host_name/g" $file_name
 sed -i "s/^externalIPaddress:.*/externalIPaddress: ${externalIPaddress}/g" $file_name
