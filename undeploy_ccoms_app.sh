@@ -30,6 +30,10 @@ sh $SCRIPTPATH/department/undeploy.sh -n $namespace
 sh $SCRIPTPATH/organization/undeploy.sh -n $namespace
 sh $SCRIPTPATH/employee/undeploy.sh -n $namespace
 sh $SCRIPTPATH/config/undeploy.sh -n $namespace
+
+## deleting namespace
+kubectl delete namespace $namespace
+
+## deleting statefull set object
 sh $SCRIPTPATH/mongo/undeploy.sh -n $namespace
 
-kubectl delete namespace $namespace
