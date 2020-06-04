@@ -20,4 +20,4 @@ do
 done
 #echo "namespace name is :: $namespace"
 
-helm del proxy
+helm del -n $namespace proxy

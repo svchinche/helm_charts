@@ -20,5 +20,5 @@ do
 done
 #echo "namespace name is :: $namespace"
 
-helm del config
+helm del -n $namespace config
 

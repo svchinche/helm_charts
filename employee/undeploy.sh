@@ -20,4 +20,4 @@ do
 done
 #echo "namespace name is :: $namespace"
 
-helm del employee
+helm del -n $namespace employee
