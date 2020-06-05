@@ -16,4 +16,6 @@ env:
     MONGO_INITDB_ROOT_USERNAME: "admin"
     MONGO_INITDB_ROOT_PASSWORD: "admin123"
     MONGO_INITDB_DATABASE: "admin"
+  normal:
+    DATABASE_PORT: 27017
 
