@@ -35,5 +35,3 @@ sh $SCRIPTPATH/department/deploy.sh -n $namespace
 sh $SCRIPTPATH/organization/deploy.sh -n $namespace
 sh $SCRIPTPATH/proxy/deploy.sh -n $namespace
 
-## Post Deployment script
-sh $SCRIPTPATH/mongo/import_data_into_mongo.sh
