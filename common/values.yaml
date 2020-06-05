@@ -3,9 +3,9 @@ secret:
 
 env:
   secret:
-    MONGO_INITDB_ROOT_USERNAME: "admin"
-    MONGO_INITDB_ROOT_PASSWORD: "admin123"
-    MONGO_INITDB_DATABASE: "admin"
+    DB_USER: "admin"
+    DB_PASSWD: "admin123"
+    DATABASE: "admin"
   normal:
     CCOMS_DATABASE_PORT: 27017
     CCOMS_CONFIG_PORT: 8888

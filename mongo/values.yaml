@@ -8,4 +8,12 @@ image:
 ingress:
   enabled: false
 
+db_secret:
+  name: db-secrets
+  
+env:
+  db_secrets:
+    MONGO_INITDB_ROOT_USERNAME: "admin"
+    MONGO_INITDB_ROOT_PASSWORD: "admin123"
+    MONGO_INITDB_DATABASE: "admin"
 
