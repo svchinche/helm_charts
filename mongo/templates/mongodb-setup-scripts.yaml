@@ -24,6 +24,7 @@ data:
     echo "DB ready. Configuring..."
     mongo --host {{ template "name" . }}.{{ .Release.Namespace }} --port 27017 < /scripts/createMongoDBUsers.js || errorExit "DB user setup failed"
     echo "DB config done"
+    sleep 10;
 
   createMongoDBUsers.js: |
     // Creating default admin user
@@ -60,3 +61,4 @@ data:
     db.users.insert({name:"Suyog Chinche", age:27, email:"suyog_chinche@yahoo.com"});
     db.users.insert({name:"Suraj Chinche", age:46, email:"suraj_chinche@yahoo.com"});
     db.users.insert({name:"Sachin Chinche", age:53, email:"sachin.chinche@yahoo.com"});
+    
