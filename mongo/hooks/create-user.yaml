@@ -4,7 +4,7 @@ kind: Job
 metadata:
   name: "{{ .Release.Name }}-create-user"
   labels:
-    app: {{ template "hook-test.fullname" . }}
+    app: {{ template "name" . }}
     release: {{ .Release.Name }}
     component: mongodb
   annotations:
@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "hook-test.name" . }}
+        app: {{ template "name" . }}
         release: {{ .Release.Name }}
     spec:
       {{- if .Values.nodeSelector }}
@@ -35,5 +35,5 @@ spec:
       volumes:
       - name: mongodb-setup
         configMap:
-          name: {{ template "hook-test.fullname" . }}-setup-script
+          name: {{ template "name" . }}-setup-script
 {{- end }}
