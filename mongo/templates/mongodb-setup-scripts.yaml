@@ -29,7 +29,7 @@ data:
     // Creating default admin user
     var adminUser = {
         user: "{{ .Values.env.secret.MONGO_INITDB_ROOT_USERNAME }}",
-        pwd: "{{ .Values.env.secret..MONGO_INITDB_ROOT_PASSWORD }}",
+        pwd: "{{ .Values.env.secret.MONGO_INITDB_ROOT_PASSWORD }}",
         roles: ["root"],
         customData: {
             createdBy: "App installer"
