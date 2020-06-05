@@ -2,10 +2,10 @@ secret:
   name: ccoms-secrets
 
 env:
-  secret:
-    DB_USER: "admin"
-    DB_PASSWD: "admin123"
-    DATABASE: "admin"
+  secrets:
+    DB_USER: "mongo"
+    DB_PASSWD: "mongo123"
+    DATABASE: "ccoms"
   normal:
     CCOMS_DATABASE_PORT: 27017
     CCOMS_CONFIG_PORT: 8888
@@ -23,10 +23,6 @@ externalIPaddress:
 #####  Mongo Values ##########
 mongodb:
   enabled: true
-  role: mongo
-  nodeUser: mongo
-  nodePassword: mongo123
-  dbname: ccoms
 
 ## Persist data to a persistent volume
 persistence:

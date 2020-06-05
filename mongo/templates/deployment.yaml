@@ -3,19 +3,19 @@ kind: StatefulSet
 metadata:
   name: {{ template "name" . }}
   labels:
-    role: {{ .Values.mongodb.role }}
+    role: {{ .Values.env.normal.ROLE }}
     environment: {{ .Values.profile }}
 spec:
   replicas: {{ .Values.replicaCount }}
   serviceName: {{ template "name" . }}
   selector:
     matchLabels:
-      role: {{ .Values.mongodb.role }}
+      role: {{ .Values.env.normal.ROLE }}
       environment: {{ .Values.profile }}
   template:
     metadata:
       labels:
-        role: {{ .Values.mongodb.role }}
+        role: {{ .Values.env.normal.ROLE }}
         environment: {{ .Values.profile }}
     spec:
       terminationGracePeriodSeconds: 10
