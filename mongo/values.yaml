@@ -2,7 +2,7 @@ replicaCount: 5
 
 image:
   repository: mongo
-  tag: 3.4
+  tag: 4.0
   pullPolicy: Always
 
 ingress:

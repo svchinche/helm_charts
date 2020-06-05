@@ -33,20 +33,20 @@ helm install --debug mongo --namespace=$namespace -f $SCRIPTPATH/../common/value
 
 
 ## Create deployment
-result=$(kubectl get pod -n $namespace | grep mongo | grep -i running)
-until [[ $? -eq 0 ]] ;
-do
-  echo "Retrying -- Waiting for mongo db container to up";
-  sleep 10;
-  result=`kubectl get pod -n $namespace | grep mongo | grep -i running`
-done
+#result=$(kubectl get pod -n $namespace | grep mongo | grep -i running)
+#until [[ $? -eq 0 ]] ;
+#do
+#  echo "Retrying -- Waiting for mongo db container to up";
+#  sleep 10;
+# result=`kubectl get pod -n $namespace | grep mongo | grep -i running`
+#done
 
-result=$(kubectl exec -i -n $namespace  mongo-0 -- mongo < $SCRIPTPATH/create_user.json)
+#result=$(kubectl exec -i -n $namespace  mongo-0 -- mongo < $SCRIPTPATH/create_user.json)
 
-until [[ $? -eq 0 ]] ;
-do
-  echo "Retrying -- Creating user on mongo db";
-  sleep 10;
-  result=$(kubectl exec -i -n $namespace  mongo-0 -- mongo < $SCRIPTPATH/create_user.json)
-done
+#until [[ $? -eq 0 ]] ;
+#do
+#  echo "Retrying -- Creating user on mongo db";
+#  sleep 10;
+#  result=$(kubectl exec -i -n $namespace  mongo-0 -- mongo < $SCRIPTPATH/create_user.json)
+#done
 

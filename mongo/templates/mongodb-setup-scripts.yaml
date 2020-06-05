@@ -17,12 +17,12 @@ data:
     }
 
     echo "Waiting for mongodb to come up"
-    until mongo --host {{ template "name" . }}.{{ .Release.Name }} --port 27017 --eval "db.adminCommand('ping')" > /dev/null 2>&1; do
+    until mongo --host {{ template "name" . }}.{{ .Release.Namespace }} --port 27017 --eval "db.adminCommand('ping')" > /dev/null 2>&1; do
     echo "Waiting for db availability"
     sleep 2
     done
     echo "DB ready. Configuring..."
-    mongo --host {{ template "name" . }}.{{ .Release.Name }} --port 27017 < /scripts/createMongoDBUsers.js || errorExit "DB user setup failed"
+    mongo --host {{ template "name" . }}.{{ .Release.Namespace }} --port 27017 < /scripts/createMongoDBUsers.js || errorExit "DB user setup failed"
     echo "DB config done"
 
   createMongoDBUsers.js: |
