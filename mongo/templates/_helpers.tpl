@@ -55,12 +55,12 @@ Create the name of the service account to use
 {{- end -}}
 {{- end -}}
 
-{{- define "helpers.list-env-variables"}}
+{{- define "helpers.list-env-database-variables"}}
 {{- range $key, $val := .Values.env.db_secrets }}
 - name: {{ $key }}
   valueFrom:
     secretKeyRef:
-      name: ccoms-secrets
+      name: db-secrets
       key: {{ $key }}
 {{- end}}
 {{- range $key, $val := .Values.env.normal }}
