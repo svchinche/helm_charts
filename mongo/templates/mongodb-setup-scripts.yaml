@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "hook-test.fullname" . }}-setup-script
+  labels:
+    app: {{ template "hook-test.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+data:
+  setup.sh: |
+    #!/bin/sh
+    # Setup script to create MongoDB users
+
+    errorExit () {
+      echo; echo "ERROR: $1"; echo; exit 1
+    }
+
+    echo "Waiting for mongodb to come up"
+    until mongo --host {{ .Release.Name }}-mongodb --port 27017 --eval "db.adminCommand('ping')" > /dev/null 2>&1; do
+    echo "Waiting for db availability"
+    sleep 2
+    done
+    echo "DB ready. Configuring..."
+    mongo --host {{ .Release.Name }}-mongodb --port 27017 < /scripts/createMongoDBUsers.js || errorExit "DB user setup failed"
+    echo "DB config done"
+
+  createMongoDBUsers.js: |
+    // Creating default admin user
+    var adminUser = {
+        user: "{{ .Values.env.secret.MONGO_INITDB_ROOT_USERNAME }}",
+        pwd: "{{ .Values.env.secret..MONGO_INITDB_ROOT_PASSWORD }}",
+        roles: ["root"],
+        customData: {
+            createdBy: "App installer"
+        }
+    }
+    db.getSiblingDB("admin").createUser(adminUser)
+
+    // Creating default app user
+    var appUser = {
+        user: "{{ .Values.db.nodeUser }}",
+        pwd: "{{ .Values.db.nodePassword }}",
+        roles: ["dbOwner"],
+        customData: {
+            createdBy: "App installer"
+        }
+    }
+    // Authenticating as admin to create user
+    var loginOutput = db.getSiblingDB("admin").auth(adminUser.user,adminUser.pwd)
+    db.getSiblingDB("{{ .Values.db.nodeUser }}").createUser(appUser)
+
+
+    // Check if user exists before creation
+    function createUserDB(dbName, dbUser) {
+        db.getSiblingDB(dbName).getUser(dbUser.user) || db.getSiblingDB(dbName).createUser(dbUser);
+    }
+
+    createUserDB("{{ .Values.db.name }}", appUser);
+    db.users.insert({name:"Suyog Chinche", age:27, email:"suyog_chinche@yahoo.com"});
+    db.users.insert({name:"Suraj Chinche", age:46, email:"suraj_chinche@yahoo.com"});
+    db.users.insert({name:"Sachin Chinche", age:53, email:"sachin.chinche@yahoo.com"});
