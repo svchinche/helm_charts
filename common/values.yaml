@@ -26,6 +26,7 @@ mongodb:
   role: mongo
   nodeUser: mongo
   nodePassword: mongo123
+  dbname: ccoms
 
 ## Persist data to a persistent volume
 persistence:

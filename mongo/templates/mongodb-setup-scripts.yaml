@@ -56,7 +56,7 @@ data:
         db.getSiblingDB(dbName).getUser(dbUser.user) || db.getSiblingDB(dbName).createUser(dbUser);
     }
 
-    createUserDB("{{ .Values.db.name }}", appUser);
+    createUserDB("{{ .Values.mongodb.dbname }}", appUser);
     db.users.insert({name:"Suyog Chinche", age:27, email:"suyog_chinche@yahoo.com"});
     db.users.insert({name:"Suraj Chinche", age:46, email:"suraj_chinche@yahoo.com"});
     db.users.insert({name:"Sachin Chinche", age:53, email:"sachin.chinche@yahoo.com"});
