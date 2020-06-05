@@ -28,8 +28,8 @@ data:
   createMongoDBUsers.js: |
     // Creating default admin user
     var adminUser = {
-        user: "{{ .Values.env.secret.MONGO_INITDB_ROOT_USERNAME }}",
-        pwd: "{{ .Values.env.secret.MONGO_INITDB_ROOT_PASSWORD }}",
+        user: "{{ .Values.env.db_secrets.MONGO_INITDB_ROOT_USERNAME }}",
+        pwd: "{{ .Values.env.db_secrets.MONGO_INITDB_ROOT_PASSWORD }}",
         roles: ["root"],
         customData: {
             createdBy: "App installer"
@@ -39,8 +39,8 @@ data:
 
     // Creating default app user
     var appUser = {
-        user: "{{ .Values.mongodb.nodeUser }}",
-        pwd: "{{ .Values.mongodb.nodePassword }}",
+        user: "{{ .Values.env.secrets.DB_USER }}",
+        pwd: "{{ .Values.env.secrets.DB_PASSWD }}",
         roles: ["dbOwner"],
         customData: {
             createdBy: "App installer"
@@ -48,7 +48,7 @@ data:
     }
     // Authenticating as admin to create user
     var loginOutput = db.getSiblingDB("admin").auth(adminUser.user,adminUser.pwd)
-    db.getSiblingDB("{{ .Values.mongodb.nodeUser }}").createUser(appUser)
+    db.getSiblingDB("{{ .Values.env.secrets.DB_USER }}").createUser(appUser)
 
 
     // Check if user exists before creation
@@ -56,7 +56,7 @@ data:
         db.getSiblingDB(dbName).getUser(dbUser.user) || db.getSiblingDB(dbName).createUser(dbUser);
     }
 
-    createUserDB("{{ .Values.mongodb.dbname }}", appUser);
+    createUserDB("{{ .Values.env.secrets.DATABASE }}", appUser);
     db.users.insert({name:"Suyog Chinche", age:27, email:"suyog_chinche@yahoo.com"});
     db.users.insert({name:"Suraj Chinche", age:46, email:"suraj_chinche@yahoo.com"});
     db.users.insert({name:"Sachin Chinche", age:53, email:"sachin.chinche@yahoo.com"});
