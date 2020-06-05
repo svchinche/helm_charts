@@ -21,8 +21,12 @@ profile: dev
 externalIPaddress: 
 
 #####  Mongo Values ##########
-role: mongo
-nfsserverhost: 
+mongodb:
+  enabled: true
+  role: mongo
+  nodeUser: mongo
+  nodePassword: mongo123
+
 ## Persist data to a persistent volume
 persistence:
   enabled: true
@@ -42,7 +46,5 @@ persistence:
   size: 2Gi
   pvs: 5
   #mountPath: /var/log/app/
+nfsserverhost:
 
-db:
-  nodeUser: mongo
-  nodePassword: mongo123

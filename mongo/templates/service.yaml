@@ -9,6 +9,6 @@ spec:
    -  port: {{ .Values.env.normal.CCOMS_DATABASE_PORT }}
       protocol: TCP
    selector:
-      role: {{ .Values.role }}
+      role: {{ .Values.mongodb.role }}
       environment: {{ .Values.profile }}
    clusterIP: None

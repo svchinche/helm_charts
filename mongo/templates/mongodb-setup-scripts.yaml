@@ -39,8 +39,8 @@ data:
 
     // Creating default app user
     var appUser = {
-        user: "{{ .Values.db.nodeUser }}",
-        pwd: "{{ .Values.db.nodePassword }}",
+        user: "{{ .Values.mongodb.nodeUser }}",
+        pwd: "{{ .Values.mongodb.nodePassword }}",
         roles: ["dbOwner"],
         customData: {
             createdBy: "App installer"
@@ -48,7 +48,7 @@ data:
     }
     // Authenticating as admin to create user
     var loginOutput = db.getSiblingDB("admin").auth(adminUser.user,adminUser.pwd)
-    db.getSiblingDB("{{ .Values.db.nodeUser }}").createUser(appUser)
+    db.getSiblingDB("{{ .Values.mongodb.nodeUser }}").createUser(appUser)
 
 
     // Check if user exists before creation
