@@ -19,14 +19,17 @@ data:
     echo "Waiting for mongodb to come up"
     until mongo --host {{ template "name" . }}.{{ .Release.Namespace }} --port 27017 --eval "db.adminCommand('ping')" > /dev/null 2>&1; do
     echo "Waiting for db availability"
-    sleep 2
+    sleep 5
     done
     echo "DB ready. Configuring..."
     mongo --host {{ template "name" . }}.{{ .Release.Namespace }} --port 27017 < /scripts/createMongoDBUsers.js || errorExit "DB user setup failed"
     echo "DB config done"
-    sleep 10;
 
   createMongoDBUsers.js: |
+    // Problem - Request was going to random node from cluster and sometime it was failing on slave node.
+    // Solution - execute this command on admin host only
+    rs.initiate()
+
     // Creating default admin user
     var adminUser = {
         user: "{{ .Values.env.db_secrets.MONGO_INITDB_ROOT_USERNAME }}",
@@ -50,7 +53,6 @@ data:
     // Authenticating as admin to create user
     var loginOutput = db.getSiblingDB("admin").auth(adminUser.user,adminUser.pwd)
     db.getSiblingDB("{{ .Values.env.secrets.DB_USER }}").createUser(appUser)
-
 
     // Check if user exists before creation
     function createUserDB(dbName, dbUser) {
