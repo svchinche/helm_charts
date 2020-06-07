@@ -61,6 +61,7 @@ spec:
       {{- end }}
       {{- end }}
 {{- else }}
-      - name: dbvolumes
-        emptyDir: {}
+  volumes:
+  - name: dbvolumes
+    emptyDir: {}
 {{- end }}
