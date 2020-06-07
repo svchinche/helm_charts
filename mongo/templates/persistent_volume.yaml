@@ -8,18 +8,18 @@ metadata:
 spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
-    storage: {{ .Values.persistence.size | quote }}
+    storage: {{ .Values.persistence.size }}
   accessModes:
     {{- range .Values.persistence.accessModes }}
     - {{ . | quote }}
     {{- end }}
-{{- if eq "hostPath" .Values.persistence.networkResource -}}
+{{- if (eq "hostPath" .Values.persistence.networkResource) }}
   hostPath:
-{{- end -}}
-{{- if eq "nfs" .Values.persistence.networkResource -}}
+{{- end }}
+{{- if (eq "nfs" .Values.persistence.networkResource) }}
   nfs:
     server: {{ .Values.persistence.server }}
-{{- end -}}
+{{- end }}
     path: /u02/pvs/pv0
 ---
 apiVersion: v1
@@ -31,18 +31,18 @@ metadata:
 spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
-    storage: {{ .Values.persistence.size | quote }}
+    storage: {{ .Values.persistence.size }}
   accessModes:
     {{- range .Values.persistence.accessModes }}
     - {{ . | quote }}
     {{- end }}
-{{- if eq "hostPath" .Values.persistence.networkResource -}}
+{{- if (eq "hostPath" .Values.persistence.networkResource) }}
   hostPath:
-{{- end -}}
-{{- if eq "nfs" .Values.persistence.networkResource -}}
+{{- end }}
+{{- if (eq "nfs" .Values.persistence.networkResource) }}
   nfs:
     server: {{ .Values.persistence.server }}
-{{- end -}}
+{{- end }}
     path: /u02/pvs/pv1
 ---
 apiVersion: v1
@@ -54,18 +54,18 @@ metadata:
 spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
-    storage: {{ .Values.persistence.size | quote }}
+    storage: {{ .Values.persistence.size }}
   accessModes:
     {{- range .Values.persistence.accessModes }}
     - {{ . | quote }}
     {{- end }}
-{{- if eq "hostPath" .Values.persistence.networkResource -}}
+{{- if (eq "hostPath" .Values.persistence.networkResource) }}
   hostPath:
-{{- end -}}
-{{- if eq "nfs" .Values.persistence.networkResource -}}
+{{- end }}
+{{- if (eq "nfs" .Values.persistence.networkResource) }}
   nfs:
     server: {{ .Values.persistence.server }}
-{{- end -}}
+{{- end }}
     path: /u02/pvs/pv2
 ---
 apiVersion: v1
@@ -77,18 +77,18 @@ metadata:
 spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
-    storage: {{ .Values.persistence.size | quote }}
+    storage: {{ .Values.persistence.size }}
   accessModes:
     {{- range .Values.persistence.accessModes }}
     - {{ . | quote }}
     {{- end }}
-{{- if eq "hostPath" .Values.persistence.networkResource -}}
+{{- if (eq "hostPath" .Values.persistence.networkResource) }}
   hostPath:
-{{- end -}}
-{{- if eq "nfs" .Values.persistence.networkResource -}}
+{{- end }}
+{{- if (eq "nfs" .Values.persistence.networkResource) }}
   nfs:
     server: {{ .Values.persistence.server }}
-{{- end -}}
+{{- end }}
     path: /u02/pvs/pv3
 ---
 apiVersion: v1
@@ -100,17 +100,17 @@ metadata:
 spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
-    storage: {{ .Values.persistence.size | quote }}
+    storage: {{ .Values.persistence.size }}
   accessModes:
     {{- range .Values.persistence.accessModes }}
     - {{ . | quote }}
     {{- end }}
-{{- if eq "hostPath" .Values.persistence.networkResource -}}
+{{- if (eq "hostPath" .Values.persistence.networkResource) }}
   hostPath:
-{{- end -}}
-{{- if eq "nfs" .Values.persistence.networkResource -}}
+{{- end }}
+{{- if (eq "nfs" .Values.persistence.networkResource) }}
   nfs:
     server: {{ .Values.persistence.server }}
-{{- end -}}
+{{- end }}
     path: /u02/pvs/pv4
 {{- end }}
