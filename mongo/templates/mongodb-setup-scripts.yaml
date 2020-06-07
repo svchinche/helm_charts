@@ -31,13 +31,12 @@ data:
     user_cmd="mongo --host {{ template "name" . }}.{{ .Release.Namespace }} --port 27017 < /scripts/createMongoDBUsers.js"
     until $user_cmd | grep -i 'Successfully added user' 
     do
-      echo "Waiting for executing user creation command on master node"
+      echo "Waiting for 'User Creation' command execution on master node"
       echo "Result of last executed coomand is - $?"
       sleep 1
     done
 
     echo "DB config done"
-
 
   createMongoDBUsers.js: |
     // Problem - Request was going to random node from cluster and sometime it was failing on slave node.
