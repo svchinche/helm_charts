@@ -8,10 +8,11 @@ metadata:
 spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
-    storage: 400Mi
+    storage: {{ .Values.persistence.size | quote }}
   accessModes:
-    - ReadWriteOnce
-    - ReadWriteMany
+    {{- range .Values.persistence.accessModes }}
+    - {{ . | quote }}
+    {{- end }}
   nfs:
     server: {{ .Values.nfsserverhost }}
     path: /u02/pvs/pv0
@@ -25,10 +26,11 @@ metadata:
 spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
-    storage: 400Mi
+    storage: {{ .Values.persistence.size | quote }}
   accessModes:
-    - ReadWriteOnce
-    - ReadWriteMany
+    {{- range .Values.persistence.accessModes }}
+    - {{ . | quote }}
+    {{- end }}
   nfs:
     server: {{ .Values.nfsserverhost }}
     path: /u02/pvs/pv1
@@ -42,10 +44,11 @@ metadata:
 spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
-    storage: 400Mi
+    storage: {{ .Values.persistence.size | quote }}
   accessModes:
-    - ReadWriteOnce
-    - ReadWriteMany
+    {{- range .Values.persistence.accessModes }}
+    - {{ . | quote }}
+    {{- end }}
   nfs:
     server: {{ .Values.nfsserverhost }}
     path: /u02/pvs/pv2
@@ -59,10 +62,11 @@ metadata:
 spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
-    storage: 400Mi
+    storage: {{ .Values.persistence.size | quote }}
   accessModes:
-    - ReadWriteOnce
-    - ReadWriteMany
+    {{- range .Values.persistence.accessModes }}
+    - {{ . | quote }}
+    {{- end }}
   nfs:
     server: {{ .Values.nfsserverhost }}
     path: /u02/pvs/pv3
@@ -76,10 +80,11 @@ metadata:
 spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
-    storage: 400Mi
+    storage: {{ .Values.persistence.size | quote }}
   accessModes:
-    - ReadWriteOnce
-    - ReadWriteMany
+    {{- range .Values.persistence.accessModes }}
+    - {{ . | quote }}
+    {{- end }}
   nfs:
     server: {{ .Values.nfsserverhost }}
     path: /u02/pvs/pv4

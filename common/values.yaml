@@ -39,9 +39,14 @@ persistence:
   ##   GKE, AWS & OpenStack)
   ##
   storageClass: manual
-  accessMode: ReadWriteOnce
-  size: 2Gi
+  accessModes:
+    - ReadWriteOnce
+    - ReadWriteMany
+  size: 400Mi
   pvs: 5
-  #mountPath: /var/log/app/
+  mountPath: /data/db
+  # annotations: {}
+  # subPath: ""
+  # existingClaim:
 nfsserverhost:
 
