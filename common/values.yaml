@@ -27,17 +27,6 @@ mongodb:
 ## Persist data to a persistent volume
 persistence:
   enabled: true
-  ## A manually managed Persistent Volume and Claim
-  ## Requires persistence.enabled: true
-  ## If defined, PVC must be created manually before volume will be bound
-  # existingClaim:
-  ## database data Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
   storageClass: manual
   accessModes:
     - ReadWriteOnce
@@ -45,8 +34,14 @@ persistence:
   size: 400Mi
   pvs: 5
   mountPath: /data/db
+  ### TGoogle Compute Engine persistent disk, an NFS share, or an Amazon Elastic Block Store volume
+  ### hostpath is for local and nfs is for nfs 
+  ## network 
+  networkResource: hostPath
+  ## provide below value in case you are using nfs network resource, otherwise below value will not be used
+  server: 
   # annotations: {}
   # subPath: ""
   # existingClaim:
-nfsserverhost:
+
 

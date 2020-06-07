@@ -13,8 +13,10 @@ spec:
     {{- range .Values.persistence.accessModes }}
     - {{ . | quote }}
     {{- end }}
-  nfs:
-    server: {{ .Values.nfsserverhost }}
+  {{ .Values.persistence.networkResource }}
+{{- if contains nfs .Values.persistence.networkResource -}}
+    server: {{ .Values.persistence.server }}
+{{- end -}}
     path: /u02/pvs/pv0
 ---
 apiVersion: v1
@@ -31,8 +33,10 @@ spec:
     {{- range .Values.persistence.accessModes }}
     - {{ . | quote }}
     {{- end }}
-  nfs:
-    server: {{ .Values.nfsserverhost }}
+  {{ .Values.persistence.networkResource }}
+{{- if contains nfs .Values.persistence.networkResource -}}
+    server: {{ .Values.persistence.server }}
+{{- end -}}
     path: /u02/pvs/pv1
 ---
 apiVersion: v1
@@ -49,8 +53,10 @@ spec:
     {{- range .Values.persistence.accessModes }}
     - {{ . | quote }}
     {{- end }}
-  nfs:
-    server: {{ .Values.nfsserverhost }}
+  {{ .Values.persistence.networkResource }}
+{{- if contains nfs .Values.persistence.networkResource -}}
+    server: {{ .Values.persistence.server }}
+{{- end -}}
     path: /u02/pvs/pv2
 ---
 apiVersion: v1
@@ -67,8 +73,10 @@ spec:
     {{- range .Values.persistence.accessModes }}
     - {{ . | quote }}
     {{- end }}
-  nfs:
-    server: {{ .Values.nfsserverhost }}
+  {{ .Values.persistence.networkResource }}
+{{- if contains nfs .Values.persistence.networkResource -}}
+    server: {{ .Values.persistence.server }}
+{{- end -}}
     path: /u02/pvs/pv3
 ---
 apiVersion: v1
@@ -85,7 +93,9 @@ spec:
     {{- range .Values.persistence.accessModes }}
     - {{ . | quote }}
     {{- end }}
-  nfs:
-    server: {{ .Values.nfsserverhost }}
+  {{ .Values.persistence.networkResource }}
+{{- if contains nfs .Values.persistence.networkResource -}}
+    server: {{ .Values.persistence.server }}
+{{- end -}}
     path: /u02/pvs/pv4
 {{- end }}
