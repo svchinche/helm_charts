@@ -37,7 +37,8 @@ persistence:
   ### TGoogle Compute Engine persistent disk, an NFS share, or an Amazon Elastic Block Store volume
   ### hostpath is for local and nfs is for nfs 
   ## network 
-  networkResource: hostPath
+  networkResource: 
+    hostPath:
   ## provide below value in case you are using nfs network resource, otherwise below value will not be used
   server: 
   # annotations: {}
