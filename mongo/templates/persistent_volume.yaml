@@ -18,7 +18,7 @@ spec:
 {{- end -}}
 {{- if eq "nfs" .Values.persistence.networkResource -}}
   nfs:
-    server: {{ .Values.persistence.server | quote }}
+    server: {{ .Values.persistence.server }}
 {{- end -}}
     path: /u02/pvs/pv0
 ---
@@ -41,7 +41,7 @@ spec:
 {{- end -}}
 {{- if eq "nfs" .Values.persistence.networkResource -}}
   nfs:
-    server: {{ .Values.persistence.server | quote }}
+    server: {{ .Values.persistence.server }}
 {{- end -}}
     path: /u02/pvs/pv1
 ---
@@ -64,7 +64,7 @@ spec:
 {{- end -}}
 {{- if eq "nfs" .Values.persistence.networkResource -}}
   nfs:
-    server: {{ .Values.persistence.server | quote }}
+    server: {{ .Values.persistence.server }}
 {{- end -}}
     path: /u02/pvs/pv2
 ---
@@ -87,7 +87,7 @@ spec:
 {{- end -}}
 {{- if eq "nfs" .Values.persistence.networkResource -}}
   nfs:
-    server: {{ .Values.persistence.server | quote }}
+    server: {{ .Values.persistence.server }}
 {{- end -}}
     path: /u02/pvs/pv3
 ---
@@ -110,7 +110,7 @@ spec:
 {{- end -}}
 {{- if eq "nfs" .Values.persistence.networkResource -}}
   nfs:
-    server: {{ .Values.persistence.server | quote }}
+    server: {{ .Values.persistence.server }}
 {{- end -}}
     path: /u02/pvs/pv4
 {{- end }}
