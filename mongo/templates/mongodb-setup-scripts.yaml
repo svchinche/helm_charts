@@ -29,13 +29,11 @@ data:
     #mongo --host {{ template "name" . }}.{{ .Release.Namespace }} --port 27017 < /scripts/createMongoDBUsers.js || errorExit "DB user setup failed"
     
     user_cmd="mongo --host {{ template "name" . }}.{{ .Release.Namespace }} --port 27017 < /scripts/createMongoDBUsers.js"
-    result=$($user_cmd)
-    until [[  "$result" == *"Successfully added user"* ]]; 
+    until [[ $user_cmd | grep -i 'Successfully added user' ]]; 
     do
       echo "Waiting for executing user creation command on master node"
-      result=$($user_cmd)
-      sleep 2
-      echo "Result is $result"
+      echo "Result of last executed coomand is $?"
+      sleep 1
     done
 
     echo "DB config done"
