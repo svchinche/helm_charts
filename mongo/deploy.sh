@@ -26,7 +26,7 @@ done
 . $SCRIPTPATH/../common/utilities.sh
 
 ## Create namespace. as namespace creation at run time not supported in helm3
-kubectl create namespace $namespace
+#kubectl create namespace $namespace
 
 ## Create deployment
 helm install --debug mongo --namespace=$namespace -f $SCRIPTPATH/../common/values.yaml  $SCRIPTPATH/../mongo
