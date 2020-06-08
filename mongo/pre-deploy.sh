@@ -27,8 +27,9 @@ fi
 host_name=$(hostname -f)
 externalIPaddress=$(hostname -I | awk '{print $1}')
 file_name="$SCRIPTPATH/../common/values.yaml"
-sed -i "s/^nfsserverhost:.*/nfsserverhost: $host_name/g" $file_name
+sed -i "s/server:.*/server: $host_name/g" $file_name
 sed -i "s/^externalIPaddress:.*/externalIPaddress: ${externalIPaddress}/g" $file_name
+sed -i "s/networkResource: hostPath/networkResource: nfs/g" $file_name
 
 ### Get data from yaml and update it create_user.json
 
